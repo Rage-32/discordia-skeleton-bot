@@ -42,4 +42,4 @@ end)
 Feel free to open issues and submit pull requests to help improve this skeleton.
 # Support
 For support you can join the Stellar Discord!<br>
-![Discord Banner 2](https://discord.com/api/guilds/1056023066246914078/widget.png?style=banner2)
+[![Discord](https://discord.com/api/guilds/1056023066246914078/widget.png?style=banner2)](https://discord.gg/aZEGSPKQMk)
