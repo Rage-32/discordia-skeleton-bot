@@ -19,7 +19,7 @@ A lightweight skeleton for building Discord bots in Lua, based on the [Discordia
 - Edit things like prefix, token, status/activity, and bot owner user ID!
 - To make config changes of your likings, head over to src/core/config.lua. 
 ## Command Handler
-- Add your commands into src/core/Commands/RegisterCommands.lua<br>
+- Add your commands into `src/core/Commands/RegisterCommands.lua`<br>
 
 Example Command:
 ```lua
