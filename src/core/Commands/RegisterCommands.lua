@@ -2,13 +2,8 @@ local sb = require("./commands.lua")
 local Utilities = require("../util.lua")
 
 --[[
-	sb.RegisterCommand("commandName", function(message)
-		do something here
-	end)
-	:SetDescription("Test description") -- Set your command description (can by nil)
-	:SetCooldown(10) -- Set the command cooldown (in seconds) (default 0 if no value)
-	:SetPermission("kickMembers") -- Set the permissions (can by nil) (https://github.com/SinisterRectus/Discordia/blob/90a80701780523f57b88f5cc70746d4dc47f630d/libs/enums.lua#L171)
-	:SetBotOwner(true) -- Should this command only be ran by the owner? (default false if no value)
+	Example command and properties:
+	https://github.com/Rage-32/discordia-skeleton-bot
 ]]
 
 sb.RegisterCommand("ping", function(message)

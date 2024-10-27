@@ -1,16 +1,21 @@
 local ch = {}
 local CommandsMeta = {}
 local Commands = {}
+local CommandsCount = 0
 
 function ch.RegisterCommand(name, callback)
 	local command = {
+		Id = CommandsCount,
 		Name = name,
 		Description = nil,
+		Aliases = nil,
 		Cooldown = nil,
 		Permission = nil,
 		BotOwner = false,
 		Callback = callback
 	}
+
+	CommandsCount = CommandsCount + 1
 
 	setmetatable(command, {__index = CommandsMeta})
 	Commands[name] = command
@@ -28,6 +33,12 @@ end
 
 function CommandsMeta:SetDescription(description)
 	self.Description = description
+
+	return self
+end
+
+function CommandsMeta:SetAliases(aliases)
+	self.Aliases = aliases
 
 	return self
 end

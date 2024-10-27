@@ -9,7 +9,7 @@ local client = discordia.Client()
 
 local commandCooldowns = { -- Does not save upon bot restarts
 	Time = nil,
-	CommandName = nil
+	CommandId = nil
 }
 
 client:on('ready', function()
@@ -23,7 +23,23 @@ client:on('messageCreate', function(message)
 	if (not string.starts(message.content, Config.Prefix)) then return end
 
 	local commandName = message.content:sub(2):lower()
+	local commandsTable = sb.GetCommands()
 	local commandObj = sb.GetCommand(commandName)
+
+	-- Check for command aliases
+	if not commandObj then
+		for _, cmd in pairs(commandsTable) do
+			if cmd.Aliases then 
+				for _, alias in ipairs(cmd.Aliases) do
+					if alias == commandName then
+						commandObj = cmd
+						break
+					end
+				end
+			end
+			if commandObj then break end
+		end
+	end
 
 	if (not commandObj) then return end
 
@@ -38,8 +54,8 @@ client:on('messageCreate', function(message)
 		return
 	end
 
-	if (commandCooldowns[message.author.id] and commandCooldowns[message.author.id].CommandName == commandName and commandCooldowns[message.author.id].Time > os.time()) then
-		Utilities.Reply(message, "You are on cooldown from command " .. "`" .. commandName .. "`" .. ". You may use it again " .. "<t:" .. commandCooldowns[message.author.id].Time .. ":R>.")
+	if (commandCooldowns[message.author.id] and commandCooldowns[message.author.id].CommandId == commandObj.Id and commandCooldowns[message.author.id].Time > os.time()) then
+		Utilities.Reply(message, "You are on cooldown from command " .. "`" .. commandObj.Name .. "`" .. ". You may use it again " .. "<t:" .. commandCooldowns[message.author.id].Time .. ":R>.")
 		return
 	end
 
@@ -48,7 +64,7 @@ client:on('messageCreate', function(message)
 	if (commandObj.Cooldown ~= nil) then
 		commandCooldowns[message.author.id] = {
 			Time = os.time() + commandObj.Cooldown,
-			CommandName = commandName
+			CommandId = commandObj.Id
 		}
 	end
 
