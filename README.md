@@ -26,10 +26,11 @@ Example Command:
 sb.RegisterCommand("commandName", function(message)
  -- do something here
 end)
-:SetDescription("Test description") -- Set your command description (can by nil)
-:SetCooldown(10) -- Set the command cooldown (in seconds) (default 0 if no value)
-:SetPermission("kickMembers") -- Set the permissions (can by nil) (https://github.com/SinisterRectus/Discordia/blob/90a80701780523f57b88f5cc70746d4dc47f630d/libs/enums.lua#L171)
-:SetBotOwner(true) -- Should this command only be ran by the owner? (default false if no value)
+:SetDescription("Test description") -- (string = nil) Set your command description
+:SetAliases("alias1", "alias2", "alias3"} -- (array = nil) Set your command aliases 
+:SetCooldown(10) -- (integer = 0) Set the command cooldown (in seconds)
+:SetPermission("kickMembers") -- (string = nil) Set the permissions (can by nil) (https://github.com/SinisterRectus/Discordia/blob/90a80701780523f57b88f5cc70746d4dc47f630d/libs/enums.lua#L171)
+:SetBotOwner(true) -- (boolean = false) Should this command only be ran by the owner? (default false if no value)
 ```
 ```lua
 sb.RegisterCommand("ping", function(message)
