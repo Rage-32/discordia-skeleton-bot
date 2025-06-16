@@ -23,12 +23,11 @@ client:on('messageCreate', function(message)
 	if (not string.starts(message.content, Config.Prefix)) then return end
 
 	local commandName = message.content:sub(2):lower()
-	local commandsTable = sb.GetCommands()
 	local commandObj = sb.GetCommand(commandName)
 
 	-- Check for command aliases
 	if not commandObj then
-		for _, cmd in pairs(commandsTable) do
+		for _, cmd in pairs(sb.GetCommands()) do
 			if cmd.Aliases then 
 				for _, alias in ipairs(cmd.Aliases) do
 					if alias == commandName then
